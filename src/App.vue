@@ -1,20 +1,23 @@
 <template>
   <div id="app">
-    <infinity></infinity>
-  </div>
+    <!--<div class="a">
+    
 
-  
+
+    </div>-->
+     <infinity></infinity>
+  </div>
 </template>
 
 <script>
-import infinity from '@/components/infinity'
+import infinity from "@/components/infinity";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    infinity
-  }
-}
+    infinity,
+  },
+};
 </script>
 
 <style>
@@ -26,4 +29,6 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+
 </style>

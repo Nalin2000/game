@@ -1,11 +1,11 @@
 <template>
-  <div class>
+  <div >
     <!-- {{player[randomNO(1,3)-1].name}}
     ได้ทั้งชื่อและ hp ออกมา
     {{randomDamage(1,300)}} สุ่ม 1 - 300-->
-    <button v-on:click="$start" class="button-a" id="yellow">START</button>
-    <button v-on:click="$attack" class="button-a" id="purple">ATTACK</button>
-    <button v-on:click="$special" class="button-a" id="purple">SPECIAL ATTACK</button>
+    <button v-on:click="$start" class="button-a" id="start">START</button>
+    <button v-on:click="$attack" class="button-a" id="atk">ATTACK</button>
+    <button v-on:click="$special" class="button-a" id="atk">SPECIAL ATTACK</button>
   </div>
 </template>
 
@@ -148,27 +148,17 @@ export default {
   cursor: pointer;
   border-radius: 10px;
   border: 0.5px solid white;
-  width: 300px;
-}
-.button-a-font-dd {
-  background-color: white;
-  border: none;
-  color: #646363;
-  padding: 5px 5px 5px 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 10px;
-  border: 0.5px solid #ffffff;
-  width: 300px;
+  width: 400px;
 }
 
-button:hover#yellow {
-  color: #ffcc66;
+
+button:hover#start {
+  color:red;
+  background-color: black;
+  border: 0.5px solid black;
+
 }
-button:hover#purple {
+button:hover#atk {
   color: #9370db;
   border: 0.5px solid black;
   background-color: black;

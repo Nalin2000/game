@@ -1,38 +1,35 @@
 <template>
   <div id="app" class="playGameScreen">
-<div>
-  <div class="a">
-    <div class="row">
-      <div class="col-md-6">
-      
-        <h1>Hero : {{he_name}} | HP : {{he_hp}}</h1>
-      </div>
-      <div class="col-md-6">
-        <h1>Monster : {{mon_name}} | HP : {{mon_hp}}</h1>
-      </div>
+    <div>
+   
+        <div class="row a">
+          <div class="col-md-6">
+            <h1>{{he_name}} | HP : {{he_hp}}</h1>
+            <div class="heroTile tile">
+              <img :src="h_img" alt class="img-fluid image" :width="he_hp + 'px'" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h1>{{mon_name}} | HP : {{mon_hp}}</h1>
+            <div class="enemyTile tile">
+              <img :src="m_img"  class="img-fluid image" :width=" mon_hp + 'px'" />
+            </div>
+          </div>
+        </div>
+ 
+      <infinity
+        @H_name="h_name"
+        @H_hp="h_hp"
+        @H_image="h_image"
+        @M_name="m_name"
+        @M_hp="m_hp"
+        @M_image="m_image"
+        @P_atk="p_atk"
+        @M_atk="m_atk"
+        @P_SATK="p_satk"
+        @M_SPATK="m_satk"
+      ></infinity>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <img :src="h_img" alt class="img-fluid image" :width="he_hp + 'px'" />
-      </div>
-      <div class="col-md-6">
-        <img :src="m_img" alt class="img-fluid image" :width=" mon_hp + 'px'" />
-      </div>
-    </div>
-   </div> 
-     <infinity
-      @H_name="h_name"
-      @H_hp="h_hp"
-      @H_image="h_image"
-      @M_name="m_name"
-      @M_hp="m_hp"
-      @M_image="m_image"
-      @P_atk="p_atk"
-      @M_atk="m_atk"
-      @P_SATK="p_satk"
-      @M_SPATK="m_satk"
-    ></infinity>
-   </div> 
   </div>
 </template>
 
@@ -103,7 +100,7 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Orbitron", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -116,9 +113,30 @@ export default {
   height: 100vh;
 }
 .a {
-    margin: auto;
-  width: 70%;
-  height: 500px;
-  border: 10px solid black;
+  margin: auto;
+  width: 90%;
+  height: 650px;
+}
+.tiles {
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+}
+
+.tile {
+  display: inline-block;
+  margin: 5px;
+ bottom:0; 
+ 
+}
+
+.heroTile {
+  float: center;
+
+}
+
+.enemyTile { 
+  float: bottom;
+
 }
 </style>

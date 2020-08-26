@@ -1,23 +1,11 @@
 <template>
-  <div>
-    <div class="a">
-      <hr />
-      name = {{aPlayer.name}}
-      hp = {{aPlayer.hp}}
-      image = {{aPlayer.image}}
-      attack = {{this.randomNO(3,10)}}
-      <hr />
-      name = {{bMonster.name}}
-      hp = {{bMonster.hp}}
-      image = {{bMonster.image}}
-      attack = {{this.randomNO(3,10)}}
-    </div>
+  <div class>
     <!-- {{player[randomNO(1,3)-1].name}}
     ได้ทั้งชื่อและ hp ออกมา
     {{randomDamage(1,300)}} สุ่ม 1 - 300-->
     <button v-on:click="$start" class="button-a" id="yellow">START</button>
     <button v-on:click="$attack" class="button-a" id="purple">ATTACK</button>
-    <button v-on:click="$special" class="button-a" id="purple">SPECIAL</button>
+    <button v-on:click="$special" class="button-a" id="purple">SPECIAL ATTACK</button>
   </div>
 </template>
 
@@ -28,18 +16,62 @@ export default {
     return {
       //เอาชื่อออกจาก object player[1].name
       //เอาชื่อออกจาก object player[random].name
-      aPlayer: { name: "", hp: 0, image: "" },
-      bMonster: { name: "", hp: 0, image: "" },
-      special: 0,
+
       player: [
-        { name: "Anakin", hp: 90, image: "a" },
-        { name: "Ironman", hp: 150, image: "b" },
-        { name: "Doreamon", hp: 200, image: "c" },
+        {
+          name: "Captain America",
+          hp: 235,
+          image: require("../assets/img/1CaptainAmerica.png"),
+        },
+
+        {
+          name: "Captain Marvel",
+          hp: 280,
+          image: require("../assets/img/1_2CaptainMarvel.png"),
+        },
+        {
+          name: "Hulk",
+          hp: 240,
+          image: require("../assets/img/1hulk.png"),
+        },
+        {
+          name: "Ironman",
+          hp: 250,
+          image: require("../assets/img/1ironman.png"),
+        },
+        {
+          name: "Thor",
+          hp: 255,
+          image: require("../assets/img/1Thor.png"),
+        },
       ],
+
       monster: [
-        { name: "Thanos", hp: 90, image: "x" },
-        { name: "Darth", hp: 10, image: "y" },
-        { name: "Comti", hp: 20, image: "z" },
+        {
+          name: "Batman",
+          hp: 230,
+          image: require("../assets/img/2batman.png"),
+        },
+        {
+          name: "Halyquen",
+          hp: 250,
+          image: require("../assets/img/2Halyquen.png"),
+        },
+        {
+          name: "Hellboy",
+          hp: 240,
+          image: require("../assets/img/2Hellboy.png"),
+        },
+        {
+          name: "Thanos",
+          hp: 260,
+          image: require("../assets/img/2thanos.png"),
+        },
+        {
+          name: "Wonder Woman",
+          hp: 240,
+          image: require("../assets/img/2_2wonder_woman.png"),
+        },
       ],
     };
   },
@@ -48,22 +80,54 @@ export default {
     randomNO: function (min, max) {
       return Math.max(Math.floor(Math.random() * max) + 1, min);
     },
+
     $start: function () {
-      //1.random Plaryer 1-3 -->ชื่อ ค่า hp รูป ฝากไว้ใน aPlary
-      this.aPlayer = this.player[this.randomNO(1, 3) - 1];
+      //สร้าง random
+      this.ranP = this.randomNO(1, 5) - 1;
+      this.ranM = this.randomNO(1, 5) - 1;
+      //1.random Plaryer 1-3 -->ชื่อ ค่า hp รูป
+      this.name_Player = this.player[this.ranP].name;
+      this.$emit("H_name", this.name_Player);
+      console.log("emit", this.name_Player);
+      this.hp_Player = this.player[this.ranP].hp;
+      this.$emit("H_hp", this.hp_Player);
+      console.log("hp", this.hp_Player);
+      this.image_Player = this.player[this.ranP].image;
+      this.$emit("H_image", this.image_Player);
+      console.log("im", this.image_Player);
+
       //2.random Monster 1-3
-       this.bMonster = this.monster[this.randomNO(1, 3) - 1];
+      this.name_monster = this.monster[this.ranM].name;
+      console.log("emit", this.name_monster);
+      this.$emit("M_name", this.name_monster);
+      this.hp_monster = this.monster[this.ranM].hp;
+      this.$emit("M_hp", this.hp_monster);
+      this.image_monster = this.monster[this.ranM].image;
+      this.$emit("M_image", this.image_monster);
     },
     $attack: function () {
       // p -> mon
-      this.attackP = this.randomNO(3,10);
+      this.atk = this.randomNO(3, 10);
+      this.$emit("P_atk", this.atk);
+      console.log("Attack :", this.atk);
 
+      this.atk = this.randomNO(3, 10);
+      this.$emit("M_atk", this.atk);
+      console.log("Atk back", this.atk);
       // p <- mon
       //p <=0 ===ทำไง  you lose
       //mon <==0 ทำไง you win
       //End
     },
-    $special: function () {},
+    $special: function () {
+      this.s_atk = this.randomNO(10, 20);
+      this.$emit("P_SATK", this.s_atk);
+      console.log("Special Attack :", this.s_atk);
+
+      this.s_atk = this.randomNO(10, 20);
+      this.$emit("M_SPATK", this.s_atk);
+      console.log("SPATK back", this.s_atk);
+    },
   },
 };
 </script>
@@ -79,8 +143,8 @@ export default {
   padding: 5px 5px 5px 5px;
   text-align: center;
   display: inline-block;
-  margin: 4px 2px;
-  font-size: 50px;
+  margin: 10px 3px;
+  font-size: 30px;
   cursor: pointer;
   border-radius: 10px;
   border: 0.5px solid white;
@@ -106,11 +170,7 @@ button:hover#yellow {
 }
 button:hover#purple {
   color: #9370db;
-}
-.a {
-  margin: auto;
-  width: 70%;
-  height: 500px;
-  border: 10px solid black;
+  border: 0.5px solid black;
+  background-color: black;
 }
 </style>

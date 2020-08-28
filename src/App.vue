@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-   <div class="row">
+    <div class="row">
       <div class="col-md-12 col-sm-12">
         <infinity
           @H_name="h_name"
@@ -21,9 +21,9 @@
       <div class="row">
         <div class="col-md-4 col-sm-4">
           <h1>{{he_name}}</h1>
-            <b-progress
+          <b-progress
             :value="he_hp"
-            :max="max"
+            :max="max_h"
             class="bar"
             show-value
             variant="success"
@@ -33,16 +33,16 @@
           <div class="tile">
             <img :src="h_img" alt class="img-fluid image" :width="he_hp + 'px'" />
           </div>
-          
         </div>
         <div class="col-md-4 mt-5 col-sm-4">
           <img src="./assets/img/vs1.png" />
         </div>
         <div class="col-md-4 col-sm-4">
           <h1>{{mon_name}}</h1>
+
           <b-progress
             :value="mon_hp"
-            :max="max"
+            :max="max_m"
             class="bar"
             show-progress
             show-value
@@ -55,8 +55,6 @@
         </div>
       </div>
     </div>
-
- 
 
     <modal
       v-if="he_hp <= 0 && mon_hp > 0 && he_name != ''"
@@ -104,6 +102,7 @@ export default {
       he_hp: 0,
       mon_hp: 0,
       max_h: 0,
+      max_m: 0,
       attack: 0,
       h_img: "",
       m_img: "",
@@ -116,7 +115,6 @@ export default {
     },
     h_hp(value) {
       this.he_hp = value;
-      this.max1 = value;
     },
     h_image(value) {
       this.h_img = value;

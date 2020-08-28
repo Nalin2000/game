@@ -4,22 +4,21 @@
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-header">
-            <slot name="header"><h3>Please Start</h3> </slot>
+            <slot name="header">
+              <h3>Please Start</h3>
+            </slot>
           </div>
 
           <div class="modal-body">
-            <slot name="body" ></slot>
-          
-         
+            <slot name="body"></slot>
+
             <slot name="footer">
               <button
-                class="button-a mt-5" id="new"
+                class="button-a mt-5"
+                id="new"
                 @click="$emit('close',false),$emit('reset',0),$emit('$reset','')"
               >New Game</button>
             </slot>
-        
-
-          
           </div>
         </div>
       </div>
@@ -68,7 +67,6 @@ export default {
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
-
 }
 
 .modal-header h3 {
@@ -78,15 +76,11 @@ export default {
 
 .modal-body {
   margin: 190px 0;
-
 }
 
-.modal-header  {
+.modal-header {
   color: #ffffff;
 }
-
-
-
 
 .modal-enter {
   opacity: 0;
@@ -121,6 +115,4 @@ button:hover#new {
   border: 0.5px solid black;
   background-color: black;
 }
-
-
 </style>

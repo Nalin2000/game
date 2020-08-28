@@ -14,9 +14,6 @@
 export default {
   data: function () {
     return {
-      //เอาชื่อออกจาก object player[1].name
-      //เอาชื่อออกจาก object player[random].name
-
       player: [
         {
           name: "Captain America",
@@ -88,17 +85,16 @@ export default {
       //1.random Plaryer 1-3 -->ชื่อ ค่า hp รูป
       this.name_Player = this.player[this.ranP].name;
       this.$emit("H_name", this.name_Player);
-    
+
       this.hp_Player = this.player[this.ranP].hp;
       this.$emit("H_hp", this.hp_Player);
-   
+
       this.image_Player = this.player[this.ranP].image;
       this.$emit("H_image", this.image_Player);
-    
 
       //2.random Monster 1-3
       this.name_monster = this.monster[this.ranM].name;
-     
+
       this.$emit("M_name", this.name_monster);
       this.hp_monster = this.monster[this.ranM].hp;
       this.$emit("M_hp", this.hp_monster);
@@ -109,23 +105,18 @@ export default {
       // p -> mon
       this.atk = this.randomNO(3, 10);
       this.$emit("P_atk", this.atk);
-   
 
       this.atk = this.randomNO(3, 10);
       this.$emit("M_atk", this.atk);
-    
     },
     $special: function () {
       this.s_atk = this.randomNO(10, 20);
       this.$emit("P_SATK", this.s_atk);
-  
 
       this.s_atk = this.randomNO(10, 20);
       this.$emit("M_SPATK", this.s_atk);
- 
     },
   },
-
 };
 </script>
 
@@ -158,5 +149,4 @@ button:hover#atk {
   border: 0.5px solid black;
   background-color: black;
 }
-
 </style>

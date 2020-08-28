@@ -1,13 +1,12 @@
 <template>
   <div id="app">
     <div class="a">
-      <div></div>
       <div class="row">
         <div class="col-md-4 col-sm-4">
           <h1>{{he_name}}</h1>
-          <b-progress :value="he_hp" :max="max" show-progress animated></b-progress>
-          <div class="heroTile tile">
-            <img :src="h_img" alt class="img-fluid image" :width="he_hp + 'vw'" />
+          <b-progress :value="he_hp" :max="h_max" class="bar" show-value variant="success" show-progress animated></b-progress>
+          <div class="tile">
+            <img :src="h_img" alt class="img-fluid image" :width="he_hp + 'px'" />
           </div>
         </div>
         <div class="col-md-4 mt-5 col-sm-4">
@@ -15,9 +14,9 @@
         </div>
         <div class="col-md-4 col-sm-4">
           <h1>{{mon_name}}</h1>
-          <b-progress :value="mon_hp" :max="max1" show-progress animated></b-progress>
-          <div class="enemyTile tile">
-            <img :src="m_img" class="img-fluid image" :width=" mon_hp + 'vw'" />
+          <b-progress :value="mon_hp" :max="m_max" class="bar" show-progress show-value  variant="danger" animated></b-progress>
+          <div class=" tile">
+            <img :src="m_img" class="img-fluid image" :width=" mon_hp + 'px'" />
           </div>
         </div>
       </div>
@@ -39,38 +38,52 @@
         ></infinity>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div v-if="he_hp <= 0" class>
-          You Louse
-          Plaese Restart
-        </div>
-        <div v-if="mon_hp <= 0">
-          You WIN
-          Plaese Restart
-        </div>
 
-        <div v-if="mon_hp <= 0 && he_hp <= 0">
-          Draw
-          Plaese Restart
-        </div>
-      </div>
-    </div>
+    <modal
+      v-if="he_hp <= 0 && mon_hp > 0 && he_name != ''"
+      @$reset="$reset"
+      @reset="reset"
+      @close="showModal = false"
+    >
+      <h1 slot="body">YOU LOUSE</h1>
+    </modal>
+
+    <modal
+      v-if="mon_hp <= 0 && he_hp > 0 && he_name != ''"
+      @$reset="$reset"
+      @reset="reset"
+      @close="showModal = false"
+    >
+      <h1 slot="body">YOU WIN</h1>
+    </modal>
+
+    <modal
+      v-if="(he_hp<=0 && mon_hp <= 0 ) && he_name != ''"
+      v-bind="reset"
+      @$reset="$reset"
+      @reset="reset"
+      @close="showModal = false"
+    >
+      <h1 slot="body">DRAW</h1>
+    </modal>
   </div>
 </template>
 
 <script>
 import infinity from "./components/infinity";
+import modal from "./components/model";
 export default {
   name: "App",
   components: {
+    modal,
     infinity,
   },
   data: function () {
     return {
-     
       he_name: "",
       mon_name: "",
+      m_max: 0,
+      h_max:0,
       he_hp: 0,
       mon_hp: 0,
       attack: 0,
@@ -82,16 +95,13 @@ export default {
     //HERO
     h_name(value) {
       this.he_name = value;
-      console.log("emit", this.he_name);
     },
     h_hp(value) {
       this.he_hp = value;
-      this.max = this.he_hp;
-      console.log("emit", this.he_hp);
+      this.h_max = value;
     },
     h_image(value) {
       this.h_img = value;
-      console.log("emit", this.h_img);
     },
     //MONSTER
     m_name(value) {
@@ -99,7 +109,7 @@ export default {
     },
     m_hp(value) {
       this.mon_hp = value;
-      this.max1 = this.mon_hp;
+      this.m_max = value;
     },
     m_image(value) {
       this.m_img = value;
@@ -108,7 +118,6 @@ export default {
     p_atk(value) {
       this.attack = value;
       this.mon_hp -= this.attack;
-      console.log("emit", this.mon_hp);
     },
     p_satk(value) {
       this.attack = value;
@@ -123,11 +132,23 @@ export default {
       this.attack = value;
       this.he_hp -= this.attack;
     },
+    $reset(value) {
+      this.he_name = value;
+      this.mon_name = value;
+      this.h_img = value;
+      this.m_img = value;
+    },
+    reset(value) {
+      this.he_hp = value;
+      this.mon_hp = value;
+    },
   },
 };
 </script>
 
 <style>
+
+
 #app {
   font-family: "Orbitron", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -143,12 +164,7 @@ export default {
   width: 90%;
   height: 600px;
 }
-.con {
-  width: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 .tiles {
   position: absolute;
   bottom: 5%;
@@ -160,12 +176,8 @@ export default {
   margin: 5px;
   bottom: 0;
 }
-
-.heroTile {
-  float: center;
-}
-
-.enemyTile {
-  float: bottom;
+.bar{
+    height: 25px;
+      border-radius: 20px;
 }
 </style>

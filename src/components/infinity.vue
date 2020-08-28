@@ -88,17 +88,17 @@ export default {
       //1.random Plaryer 1-3 -->ชื่อ ค่า hp รูป
       this.name_Player = this.player[this.ranP].name;
       this.$emit("H_name", this.name_Player);
-      console.log("emit", this.name_Player);
+    
       this.hp_Player = this.player[this.ranP].hp;
       this.$emit("H_hp", this.hp_Player);
-      console.log("hp", this.hp_Player);
+   
       this.image_Player = this.player[this.ranP].image;
       this.$emit("H_image", this.image_Player);
-      console.log("im", this.image_Player);
+    
 
       //2.random Monster 1-3
       this.name_monster = this.monster[this.ranM].name;
-      console.log("emit", this.name_monster);
+     
       this.$emit("M_name", this.name_monster);
       this.hp_monster = this.monster[this.ranM].hp;
       this.$emit("M_hp", this.hp_monster);
@@ -109,24 +109,20 @@ export default {
       // p -> mon
       this.atk = this.randomNO(3, 10);
       this.$emit("P_atk", this.atk);
-      console.log("Attack :", this.atk);
+   
 
       this.atk = this.randomNO(3, 10);
       this.$emit("M_atk", this.atk);
-      console.log("Atk back", this.atk);
-      // p <- mon
-      //p <=0 ===ทำไง  you lose
-      //mon <==0 ทำไง you win
-      //End
+    
     },
     $special: function () {
       this.s_atk = this.randomNO(10, 20);
       this.$emit("P_SATK", this.s_atk);
-      console.log("Special Attack :", this.s_atk);
+  
 
       this.s_atk = this.randomNO(10, 20);
       this.$emit("M_SPATK", this.s_atk);
-      console.log("SPATK back", this.s_atk);
+ 
     },
   },
 

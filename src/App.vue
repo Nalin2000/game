@@ -1,10 +1,27 @@
 <template>
   <div id="app">
+   <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <infinity
+          @H_name="h_name"
+          @H_hp="h_hp"
+          @H_image="h_image"
+          @M_name="m_name"
+          @M_hp="m_hp"
+          @M_image="m_image"
+          @P_atk="p_atk"
+          @M_atk="m_atk"
+          @P_SATK="p_satk"
+          @M_SPATK="m_satk"
+        ></infinity>
+      </div>
+    </div>
+
     <div class="a">
       <div class="row">
         <div class="col-md-4 col-sm-4">
           <h1>{{he_name}}</h1>
-          <b-progress
+            <b-progress
             :value="he_hp"
             :max="max"
             class="bar"
@@ -16,6 +33,7 @@
           <div class="tile">
             <img :src="h_img" alt class="img-fluid image" :width="he_hp + 'px'" />
           </div>
+          
         </div>
         <div class="col-md-4 mt-5 col-sm-4">
           <img src="./assets/img/vs1.png" />
@@ -38,22 +56,7 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-12 col-sm-12">
-        <infinity
-          @H_name="h_name"
-          @H_hp="h_hp"
-          @H_image="h_image"
-          @M_name="m_name"
-          @M_hp="m_hp"
-          @M_image="m_image"
-          @P_atk="p_atk"
-          @M_atk="m_atk"
-          @P_SATK="p_satk"
-          @M_SPATK="m_satk"
-        ></infinity>
-      </div>
-    </div>
+ 
 
     <modal
       v-if="he_hp <= 0 && mon_hp > 0 && he_name != ''"

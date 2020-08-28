@@ -20,6 +20,7 @@
     <div class="a">
       <div class="row">
         <div class="col-md-4 col-sm-4">
+         
           <h1>{{he_name}}</h1>
           <b-progress
             :value="he_hp"

@@ -145,11 +145,11 @@ export default {
   text-align: center;
   display: inline-block;
   margin: 10px 3px;
-  font-size: 30px;
+  font-size: 2vw;
   cursor: pointer;
   border-radius: 10px;
-  border: 0.5px solid white;
-  width: 400px;
+  border: 0.5px solid rgb(218, 204, 204);
+  width: 30vw;
 }
 
 button:hover#start {

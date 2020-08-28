@@ -1,22 +1,29 @@
 <template>
-  <div id="app" class="playGameScreen">
-    <div>
-   
-        <div class="row a">
-          <div class="col-md-6">
-            <h1>{{he_name}} | HP : {{he_hp}}</h1>
-            <div class="heroTile tile">
-              <img :src="h_img" alt class="img-fluid image" :width="he_hp + 'px'" />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <h1>{{mon_name}} | HP : {{mon_hp}}</h1>
-            <div class="enemyTile tile">
-              <img :src="m_img"  class="img-fluid image" :width=" mon_hp + 'px'" />
-            </div>
+  <div id="app">
+    <div class="a">
+    <div></div>
+      <div class="row">
+        <div class="col-md-4">
+          <h1>{{he_name}}</h1>
+          <div class="heroTile tile">
+            <h4>HP : {{he_hp}}</h4>           
+              <img :src="h_img" alt class="img-fluid image" :width="he_hp + 'px'" />           
           </div>
         </div>
- 
+        <div class="col-md-4">
+          <img src="./assets/img/vs1.png" />
+        </div>
+        <div class="col-md-4">
+          <h1>{{mon_name}}</h1>
+          <div class="enemyTile tile">
+            <h4>HP : {{mon_hp}}</h4>
+           <img :src="m_img" class="img-fluid image" :width=" mon_hp + 'px'" />
+        
+          </div>
+        </div>
+      </div>
+
+      
       <infinity
         @H_name="h_name"
         @H_hp="h_hp"
@@ -29,6 +36,23 @@
         @P_SATK="p_satk"
         @M_SPATK="m_satk"
       ></infinity>
+      <div class="row">
+        <div class="col-md-12">
+          <div v-if="he_hp <= 0" class>
+            You Louse
+            Plaese Restart
+          </div>
+          <div v-if="mon_hp <= 0">
+            You WIN
+            Plaese Restart
+          </div>
+
+          <div v-if="mon_hp <= 0 && he_hp <= 0">
+            Draw
+            Plaese Restart
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -106,16 +130,17 @@ export default {
   text-align: center;
   color: #ffffff;
 }
-.playGameScreen {
-  background-image: url("assets/img/bg1.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  height: 100vh;
-}
+
 .a {
   margin: auto;
   width: 90%;
   height: 650px;
+}
+.con {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .tiles {
   position: absolute;
@@ -126,17 +151,14 @@ export default {
 .tile {
   display: inline-block;
   margin: 5px;
- bottom:0; 
- 
+  bottom: 0;
 }
 
 .heroTile {
   float: center;
-
 }
 
-.enemyTile { 
+.enemyTile {
   float: bottom;
-
 }
 </style>

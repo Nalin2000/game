@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <!-- {{player[randomNO(1,3)-1].name}}
     ได้ทั้งชื่อและ hp ออกมา
     {{randomDamage(1,300)}} สุ่ม 1 - 300-->
@@ -48,9 +48,9 @@ export default {
 
       monster: [
         {
-          name: "Batman",
+          name: "Shazam",
           hp: 230,
-          image: require("../assets/img/2batman.png"),
+          image: require("../assets/img/2Shazam.png"),
         },
         {
           name: "Halyquen",
@@ -58,9 +58,9 @@ export default {
           image: require("../assets/img/2Halyquen.png"),
         },
         {
-          name: "Hellboy",
+          name: "Aquaman",
           hp: 240,
-          image: require("../assets/img/2Hellboy.png"),
+          image: require("../assets/img/2Aquaman.png"),
         },
         {
           name: "Thanos",
@@ -129,6 +129,7 @@ export default {
       console.log("SPATK back", this.s_atk);
     },
   },
+
 };
 </script>
 
@@ -151,16 +152,15 @@ export default {
   width: 400px;
 }
 
-
 button:hover#start {
-  color:red;
+  color: red;
   background-color: black;
   border: 0.5px solid black;
-
 }
 button:hover#atk {
   color: #9370db;
   border: 0.5px solid black;
   background-color: black;
 }
+
 </style>

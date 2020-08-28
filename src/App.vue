@@ -4,7 +4,15 @@
       <div class="row">
         <div class="col-md-4 col-sm-4">
           <h1>{{he_name}}</h1>
-          <b-progress :value="he_hp" :max="h_max" class="bar" show-value variant="success" show-progress animated></b-progress>
+          <b-progress
+            :value="he_hp"
+            :max="max"
+            class="bar"
+            show-value
+            variant="success"
+            show-progress
+            animated
+          ></b-progress>
           <div class="tile">
             <img :src="h_img" alt class="img-fluid image" :width="he_hp + 'px'" />
           </div>
@@ -14,8 +22,16 @@
         </div>
         <div class="col-md-4 col-sm-4">
           <h1>{{mon_name}}</h1>
-          <b-progress :value="mon_hp" :max="m_max" class="bar" show-progress show-value  variant="danger" animated></b-progress>
-          <div class=" tile">
+          <b-progress
+            :value="mon_hp"
+            :max="max"
+            class="bar"
+            show-progress
+            show-value
+            variant="danger"
+            animated
+          ></b-progress>
+          <div class="tile">
             <img :src="m_img" class="img-fluid image" :width=" mon_hp + 'px'" />
           </div>
         </div>
@@ -82,10 +98,9 @@ export default {
     return {
       he_name: "",
       mon_name: "",
-      m_max: 0,
-      h_max:0,
       he_hp: 0,
       mon_hp: 0,
+      max_h: 0,
       attack: 0,
       h_img: "",
       m_img: "",
@@ -98,7 +113,7 @@ export default {
     },
     h_hp(value) {
       this.he_hp = value;
-      this.h_max = value;
+      this.max1 = value;
     },
     h_image(value) {
       this.h_img = value;
@@ -109,7 +124,6 @@ export default {
     },
     m_hp(value) {
       this.mon_hp = value;
-      this.m_max = value;
     },
     m_image(value) {
       this.m_img = value;
@@ -147,8 +161,6 @@ export default {
 </script>
 
 <style>
-
-
 #app {
   font-family: "Orbitron", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -176,8 +188,8 @@ export default {
   margin: 5px;
   bottom: 0;
 }
-.bar{
-    height: 25px;
-      border-radius: 20px;
+.bar {
+  height: 25px;
+  border-radius: 20px;
 }
 </style>
